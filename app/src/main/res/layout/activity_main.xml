@@ -89,22 +89,24 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:orientation="horizontal">
+        android:orientation="vertical">
         <Button
             android:layout_width="wrap_content"
             android:background="@drawable/sober_bg"
             android:text="UPLOAD"
+            android:id="@+id/et_id_up"
             android:layout_height="wrap_content"/>
         <View
-            android:layout_width="10dp"
-            android:layout_height="1dp"/>
+            android:layout_width="1dp"
+            android:layout_height="10dp"/>
         <TextView
+            android:id="@+id/id_txt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="img_12344412.jpg"/>
+            android:text="No File Uploaded"/>
         <View
             android:layout_width="140dp"
-            android:layout_height="1dp"/>
+            android:layout_height="10dp"/>
 
     </LinearLayout>
     <View
@@ -135,22 +137,24 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:orientation="horizontal">
+        android:orientation="vertical">
         <Button
             android:layout_width="wrap_content"
             android:background="@drawable/sober_bg"
             android:text="UPLOAD"
+            android:id="@+id/et_flight_up"
             android:layout_height="wrap_content"/>
         <View
             android:layout_width="10dp"
-            android:layout_height="1dp"/>
+            android:layout_height="10dp"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="img_12344412.jpg"/>
+            android:id="@+id/flight_txt"
+            android:text="No File Uploaded"/>
         <View
             android:layout_width="140dp"
-            android:layout_height="1dp"/>
+            android:layout_height="10dp"/>
 
     </LinearLayout>
     <TextView
@@ -189,6 +193,7 @@
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/et_pnr_edit"
             android:hint="Enter your trian PNR"/>
 
         <View
@@ -197,6 +202,7 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/et_pnr_up"
             android:text="SUBMIT"/>
 
 

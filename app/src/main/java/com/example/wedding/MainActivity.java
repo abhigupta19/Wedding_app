@@ -1,14 +1,218 @@
 package com.example.wedding;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
+import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.provider.OpenableColumns;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+
+import org.w3c.dom.Text;
+
+import java.io.IOException;
+import java.util.UUID;
 
 public class MainActivity extends AppCompatActivity {
+
+    EditText nameText;
+    EditText mailText;
+    Button id_up;
+    Button pnr_submit;
+    Button fli_up;
+    EditText pnrText;
+    TextView idText;
+    TextView flightText;
+    Button register;
+    boolean id_uploaded;
+    boolean flight_uploaded;
+    boolean pnr_upload;
+    private final int PICK_IMAGE_REQUEST_ID = 71;
+    private final int PICK_IMAGE_REQUEST_FLIGHT = 72;
+    Uri filepath_id;
+    Uri file_path_flight;
+    FirebaseStorage storage;
+    StorageReference storageReference;
+    String phone;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        id_uploaded=false;
+        flight_uploaded=false;
+        pnr_upload=false;
+        storage = FirebaseStorage.getInstance();
+        storageReference = storage.getReference();
+        nameText=findViewById(R.id.et_name);
+        mailText=findViewById(R.id.et_email);
+        id_up=findViewById(R.id.et_id_up);
+        pnr_submit=findViewById(R.id.et_pnr_up);
+        fli_up=findViewById(R.id.et_flight_up);
+        pnrText=findViewById(R.id.et_pnr_edit);
+        idText=findViewById(R.id.id_txt);
+        flightText=findViewById(R.id.flight_txt);
+        register=findViewById(R.id.btn_register);
+        Intent intent=getIntent();
+        phone= intent.getStringExtra("phone");
+
+        id_up.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                chooseImage("id");
+            }
+        });
+
+        register.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                boolean is_ok=true;
+                if(nameText.getText().toString().isEmpty())
+                {
+                    nameText.setError("Please Enter a name");
+                    is_ok=false;
+                }
+                if(mailText.getText().toString().isEmpty())
+                {
+                    mailText.setError("Please Enter your mail id");
+                    is_ok=false;
+                }
+                if(!id_uploaded)
+                {
+                    Toast.makeText(MainActivity.this, "Please Upload your ID Proof", Toast.LENGTH_SHORT).show();
+                    is_ok=false;
+                }
+                if(!flight_uploaded && !pnr_upload)
+                {
+                    is_ok=false;
+                    Toast.makeText(MainActivity.this, "Please enter either pnr or flight ticket", Toast.LENGTH_SHORT).show();
+
+                }
+                if(is_ok)
+                {
+                    System.out.println("wow");
+                    String name=nameText.getText().toString();
+                    String mail=mailText.getText().toString();
+                    String s_flight=uploadImage(file_path_flight);
+                    String s_id=uploadImage(filepath_id);
+                    String pnr=pnrText.getText().toString();
+                    User user=new User(phone , name , s_id , s_flight , pnr);
+                }
+
+
+
+            }
+        });
+
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == PICK_IMAGE_REQUEST_ID && resultCode == RESULT_OK
+                && data != null && data.getData() != null )
+        {
+            filepath_id = data.getData();
+            idText.setText(getFileName(filepath_id));
+            id_uploaded=true;
+//                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
+//                imageView.setImageBitmap(bitmap);
+
+
+        }
+        if(requestCode == PICK_IMAGE_REQUEST_FLIGHT && resultCode == RESULT_OK
+                && data != null && data.getData() != null )
+        {
+            file_path_flight = data.getData();
+            flightText.setText(getFileName(file_path_flight));
+            flight_uploaded=true;
+//                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
+//                imageView.setImageBitmap(bitmap);
+
+
+        }
+    }
+    private void chooseImage(String s) {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        if(s.compareTo("id")==0)
+            startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST_ID);
+        if(s.compareTo("flight")==0)
+            startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST_FLIGHT);
+
+    }
+    public String getFileName(Uri uri) {
+        String result = null;
+        if (uri.getScheme().equals("content")) {
+            Cursor cursor = getContentResolver().query(uri, null, null, null, null);
+            try {
+                if (cursor != null && cursor.moveToFirst()) {
+                    result = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
+                }
+            } finally {
+                cursor.close();
+            }
+        }
+        if (result == null) {
+            result = uri.getPath();
+            int cut = result.lastIndexOf('/');
+            if (cut != -1) {
+                result = result.substring(cut + 1);
+            }
+        }
+        return result;
+    }
+    private String uploadImage(Uri filePath) {
+
+        if(filePath != null)
+        {
+            final ProgressDialog progressDialog = new ProgressDialog(this);
+            progressDialog.setTitle("Uploading...");
+            progressDialog.show();
+            String str="images/"+ UUID.randomUUID().toString();
+            StorageReference ref = storageReference.child(str);
+            ref.putFile(filePath)
+                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            progressDialog.dismiss();
+                            Toast.makeText(MainActivity.this, "Uploaded", Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            progressDialog.dismiss();
+                            Toast.makeText(MainActivity.this, "Failed "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                            double progress = (100.0*taskSnapshot.getBytesTransferred()/taskSnapshot
+                                    .getTotalByteCount());
+                            progressDialog.setMessage("Uploaded "+(int)progress+"%");
+                        }
+                    });
+            return str;
+        }
+        else
+            return "";
     }
 }
