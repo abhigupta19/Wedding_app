@@ -90,14 +90,36 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal"
+            android:layout_height="wrap_content">
         <Button
-            android:layout_width="wrap_content"
-            android:background="@drawable/sober_bg"
-            android:text="UPLOAD"
-            android:id="@+id/et_id_up"
+            android:layout_width="110dp"
+            android:background="@drawable/button_background"
+            android:textColor="@color/accent"
+
+            android:text="CLICK IMAGE"
+
+            android:id="@+id/et_id_click"
             android:layout_height="wrap_content"/>
+        <TextView
+            android:text="OR"
+            android:gravity="center_horizontal"
+            android:textColor="@color/primary_darker"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"/>
+            <Button
+                android:layout_width="110dp"
+                android:background="@drawable/button_background"
+                android:textColor="@color/accent"
+                android:text="UPLOAD"
+                android:id="@+id/et_id_up"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
         <View
-            android:layout_width="1dp"
+            android:layout_width="80dp"
             android:layout_height="10dp"/>
         <TextView
             android:id="@+id/id_txt"
@@ -138,14 +160,35 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
         <Button
-            android:layout_width="wrap_content"
-            android:background="@drawable/sober_bg"
-            android:text="UPLOAD"
-            android:id="@+id/et_flight_up"
+            android:layout_width="110dp"
+            android:background="@drawable/button_background"
+            android:textColor="@color/accent"
+            android:text="CLICK IMAGE"
+            android:id="@+id/et_flight_click"
             android:layout_height="wrap_content"/>
+            <TextView
+                android:text="OR"
+                android:gravity="center_horizontal"
+                android:textColor="@color/primary_darker"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"/>
+            <Button
+                android:layout_width="110dp"
+                android:background="@drawable/button_background"
+                android:textColor="@color/accent"
+                android:text="UPLOAD"
+                android:id="@+id/et_flight_up"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
         <View
-            android:layout_width="10dp"
+            android:layout_width="80dp"
             android:layout_height="10dp"/>
         <TextView
             android:layout_width="wrap_content"
@@ -202,6 +245,7 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/button_background"
             android:id="@+id/et_pnr_up"
             android:text="SUBMIT"/>
 
