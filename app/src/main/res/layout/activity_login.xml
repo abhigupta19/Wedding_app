@@ -9,17 +9,17 @@
     tools:context=".Login">
 
 
-<!--    <ImageView-->
-<!--        android:layout_width="1dp"-->
-<!--        android:layout_height="1dp"-->
-<!--        android:scaleType="centerCrop"-->
-<!--        android:src="@drawable/backgtound_png"-->
-<!--        android:alpha="127"-->
-<!--        android:visibility="gone"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent" />-->
+    <ImageView
+        android:layout_width="1dp"
+        android:layout_height="1dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/backgtound_png"
+        android:alpha="127"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/topText"
@@ -123,7 +123,7 @@
         android:layout_height="148dp"
         android:layout_marginBottom="60dp"
         android:orientation="vertical"
-        android:visibility="visible"
+        android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -148,7 +148,6 @@
         <com.chaos.view.PinView
             android:id="@+id/pinView"
             style="@style/PinWidget.PinView"
-            android:outlineAmbientShadowColor="@color/accent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
