@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
 
 import android.Manifest;
 import android.app.ProgressDialog;
@@ -95,13 +96,13 @@ public class MainActivity extends AppCompatActivity {
         id_click.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                takePicture("idClick");
+                file_id=takePicture("idClick");
             }
         });
         flight_click.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                takePicture("tktClick");
+                file_tkt=takePicture("tktClick");
 
             }
         });
@@ -275,15 +276,15 @@ public class MainActivity extends AppCompatActivity {
         else
             return "";
     }
-    public void takePicture( String str) {
+    public Uri takePicture( String str) {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        Uri file = Uri.fromFile(getOutputMediaFile());
+        Uri file=FileProvider.getUriForFile(MainActivity.this, getApplicationContext().getPackageName() + ".provider", getOutputMediaFile());
         intent.putExtra(MediaStore.EXTRA_OUTPUT, file);
         if(str=="idClick")
         startActivityForResult(intent, 100);
         if(str=="tktClick")
             startActivityForResult(intent, 101);
-
+        return file;
     }
     private static File getOutputMediaFile(){
         File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
