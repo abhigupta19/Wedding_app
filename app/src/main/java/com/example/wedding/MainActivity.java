@@ -19,6 +19,8 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
@@ -50,6 +52,8 @@ public class MainActivity extends AppCompatActivity {
     FirebaseStorage storage;
     StorageReference storageReference;
     String phone;
+    FirebaseDatabase database;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
         register=findViewById(R.id.btn_register);
         Intent intent=getIntent();
         phone= intent.getStringExtra("phone");
+        database = FirebaseDatabase.getInstance();
 
         id_up.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,10 +83,21 @@ public class MainActivity extends AppCompatActivity {
                 chooseImage("id");
             }
         });
+        fli_up.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                chooseImage("flight");
+
+            }
+        });
 
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                DatabaseReference myRef = database.getReference("Users");
+
+                myRef.setValue("Hello, World!");
                 boolean is_ok=true;
                 if(nameText.getText().toString().isEmpty())
                 {
@@ -113,8 +129,9 @@ public class MainActivity extends AppCompatActivity {
                     String s_id=uploadImage(filepath_id);
                     String pnr=pnrText.getText().toString();
                     User user=new User(phone , name , s_id , s_flight , pnr);
-                }
+                    myRef.setValue(user);
 
+                }
 
 
             }

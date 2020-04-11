@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -35,7 +36,7 @@ public class Login extends AppCompatActivity {
     private EditText  userPhone;
     private ConstraintLayout first, second;
     private String mVerificationId;
-    
+    SharedPreferences sp;
 
     //The edittext to input the code
     private EditText editTextCode;
@@ -49,6 +50,13 @@ public class Login extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         FirebaseApp.initializeApp(this);
         mAuth = FirebaseAuth.getInstance();
+        sp = getSharedPreferences("login",MODE_PRIVATE);
+        if(sp.getBoolean("logged",false)){
+            Intent intent = new Intent(Login.this, MainActivity.class);
+            String s=sp.getString("mobile","00000000");
+            intent.putExtra("phone",s);
+            startActivity(intent);
+        }
 
         topText = findViewById(R.id.topText);
         pinView = findViewById(R.id.pinView);
@@ -146,6 +154,9 @@ public class Login extends AppCompatActivity {
                             //verification successful we will start the profile activity
                             Intent intent = new Intent(Login.this, MainActivity.class);
                             intent.putExtra("phone",userPhone.getText().toString());
+                            sp.edit().putBoolean("logged",true).apply();
+                            sp.edit().putString("mobile",userPhone.getText().toString());
+
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(intent);
 
