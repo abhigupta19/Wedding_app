@@ -4,9 +4,10 @@
 
 
 
-    -<style parent="Theme.AppCompat.Light.DarkActionBar" name="AppTheme">
+    <style parent="Theme.AppCompat.Light.DarkActionBar" name="AppTheme">
 
-    <!-- Customize your theme here. -->
+        <item name="android:textColorSecondary">@color/white</item>
+        <!-- Customize your theme here. -->
 
 
 </style>
@@ -46,5 +47,8 @@
     <item name="android:background">@color/primary</item>
 
 </style>
+    <style name="BottomMenuColor" parent="Theme.AppCompat.DayNight.DarkActionBar">
+        <item name="android:textColorSecondary">@android:color/white</item>
+    </style>
 
 </resources>

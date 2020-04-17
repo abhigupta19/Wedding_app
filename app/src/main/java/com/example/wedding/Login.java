@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -56,6 +57,7 @@ public class Login extends AppCompatActivity {
             String s=sp.getString("mobile","00000000");
             intent.putExtra("phone",s);
             startActivity(intent);
+            finish();
         }
 
         topText = findViewById(R.id.topText);
@@ -128,6 +130,8 @@ public class Login extends AppCompatActivity {
         @Override
         public void onVerificationFailed(FirebaseException e) {
             Toast.makeText(Login.this, e.getMessage(), Toast.LENGTH_LONG).show();
+
+            Log.i("jjj",e.getMessage());
         }
 
         @Override
@@ -159,6 +163,7 @@ public class Login extends AppCompatActivity {
 
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(intent);
+                            finish();
 
                         } else {
 
@@ -182,5 +187,6 @@ public class Login extends AppCompatActivity {
                 TaskExecutors.MAIN_THREAD,
                 mCallbacks);
     }
+
 
 }

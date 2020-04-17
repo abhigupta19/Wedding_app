@@ -1,42 +1,42 @@
 {
   "project_info": {
-    "project_number": "645620996621",
-    "firebase_url": "https://wedding-6167f.firebaseio.com",
-    "project_id": "wedding-6167f",
-    "storage_bucket": "wedding-6167f.appspot.com"
+    "project_number": "250622419733",
+    "firebase_url": "https://wedding-e6d7d.firebaseio.com",
+    "project_id": "wedding-e6d7d",
+    "storage_bucket": "wedding-e6d7d.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:645620996621:android:ee80a60e1d61c01b141344",
+        "mobilesdk_app_id": "1:250622419733:android:f2de993eca4e01b2993f1c",
         "android_client_info": {
           "package_name": "com.example.wedding"
         }
       },
       "oauth_client": [
         {
-          "client_id": "645620996621-fdrafd0ijn3bt7n0j61bsj7eva4njoh1.apps.googleusercontent.com",
+          "client_id": "250622419733-7appoj2rp5o23i35kf2rbjibdn73j01q.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.wedding",
-            "certificate_hash": "adc3642f410bdd0c76669be66f43c46e54273f8a"
+            "certificate_hash": "975828094da15f1221372e40e994acd3d969685f"
           }
         },
         {
-          "client_id": "645620996621-romab9i5l5u6joqts9cq7chqcdqjn7ja.apps.googleusercontent.com",
+          "client_id": "250622419733-ikid4jr0ih5kjplr3g097nd2h00ue81n.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAjuT_-SzvY3LR1AOWCktwtO_8PYtqCTro"
+          "current_key": "AIzaSyAH_2wnejxWIs93Echj44yk9D2MelF9_cI"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "645620996621-romab9i5l5u6joqts9cq7chqcdqjn7ja.apps.googleusercontent.com",
+              "client_id": "250622419733-ikid4jr0ih5kjplr3g097nd2h00ue81n.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
