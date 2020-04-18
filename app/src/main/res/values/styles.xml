@@ -7,10 +7,13 @@
     <style parent="Theme.AppCompat.Light.DarkActionBar" name="AppTheme">
 
         <item name="android:textColorSecondary">@color/white</item>
+
         <!-- Customize your theme here. -->
+        <item name="bottomSheetDialogTheme">@style/AppBottomSheetDialogTheme</item>
 
 
-</style>
+
+    </style>
 
 
     -<style parent="Theme.AppCompat.NoActionBar" name="AppTheme.Dark">
@@ -49,6 +52,33 @@
 </style>
     <style name="BottomMenuColor" parent="Theme.AppCompat.DayNight.DarkActionBar">
         <item name="android:textColorSecondary">@android:color/white</item>
+    </style>
+    <style name="AppBottomSheetDialogTheme"
+        parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/AppModalStyle</item>
+    </style>
+
+    <style name="AppModalStyle"
+        parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/rounded_dialog</item>
+    </style>
+    <style name="TextLabel" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <!-- Hint color and label color in FALSE state -->
+        <item name="android:textSize">20sp</item>
+        <!-- Label color in TRUE state and bar color FALSE and TRUE State -->
+        <item name="colorAccent">@color/primary_dark</item>
+        <item name="colorControlNormal">@color/primary</item>
+        <item name="colorControlActivated">@color/primary_dark</item>
+        <item name="boxStrokeColor">@color/primary_dark</item>
+        <item name="android:cacheColorHint">@color/primary_dark</item>
+    </style>
+    <style name="TextInputLayoutAppearance" parent="Widget.Design.TextInputLayout">
+        <!-- reference our hint & error styles -->
+
+
+        <item name="colorControlNormal">@color/primary_dark</item>
+        <item name="colorControlActivated">@color/primary_dark</item>
+        <item name="colorControlHighlight">@color/primary_dark</item>
     </style>
 
 </resources>
