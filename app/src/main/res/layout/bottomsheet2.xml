@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:backgroundTintMode="screen"
+    android:padding="20dp"
+    android:background="@drawable/rounded_dialog"
+    app:layout_behavior="@string/bottom_sheet_behavior"
+    >
+
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:lines="1"
+        android:paddingBottom="20dp"
+        android:text="Let join us and A few formalities !!"
+        android:textSize="18dp"
+
+
+        />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:lines="1"
+        android:paddingLeft="20dp"
+        android:paddingBottom="10dp"
+        android:text="Date of Event"
+        android:textSize="10dp"
+
+        />
+
+    <DatePicker
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="20dp"
+        android:datePickerMode="spinner"
+        android:calendarViewShown="false"
+        android:id="@+id/date"
+        android:theme="@style/TextInputLayoutAppearance"
+        android:startYear="2020"
+        ></DatePicker>
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="10dp"
+        android:id="@+id/type"
+        android:theme="@style/TextInputLayoutAppearance"
+        app:errorEnabled="true">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:lines="5"
+            android:inputType="textEmailAddress"
+            android:hint="Type of Event"></com.google.android.material.textfield.TextInputEditText>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="10dp"
+        android:id="@+id/remarks"
+        android:theme="@style/TextInputLayoutAppearance"
+        app:errorEnabled="true">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:lines="5"
+            android:inputType="textEmailAddress"
+            android:hint="Remarks(Optional)"></com.google.android.material.textfield.TextInputEditText>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Next"
+        android:id="@+id/nextPfrag"
+        android:textColor="@color/white"
+        android:background="@drawable/btn_custom"></Button>
+
+</LinearLayout>
