@@ -38,6 +38,7 @@ public class Bottomsheet2 extends BottomSheetDialogFragment {
                 if(k==1) {
                     sendData2.sendInfo2(String.valueOf(datePicker.getDayOfMonth())+"/"+String.valueOf(datePicker.getMonth())+"/"+String.valueOf(datePicker.getYear()), type.getEditText().getText().toString(), remrks.getEditText().getText().toString());
                     BottomSheet3 bottomSheet3=new BottomSheet3();
+                    dismiss();
                     bottomSheet3.show(getFragmentManager(),"jaibaba");
                 }
                 }
