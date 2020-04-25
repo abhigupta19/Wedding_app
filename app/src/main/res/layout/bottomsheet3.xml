@@ -116,24 +116,15 @@
                 android:layout_width="110dp"
                 android:background="@drawable/button_background"
                 android:textColor="@color/accent"
-                android:text="CLICK IMAGE"
+                android:text="Select contacts"
                 android:id="@+id/et_flight_click"
                 android:layout_height="wrap_content"/>
-            <TextView
-                android:text="OR"
-                android:gravity="center_horizontal"
-                android:textColor="@color/primary_darker"
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"/>
-            <Button
-                android:layout_width="110dp"
-                android:background="@drawable/button_background"
-                android:textColor="@color/accent"
-                android:text="UPLOAD"
-                android:id="@+id/et_flight_up"
-                android:layout_height="wrap_content"/>
-
         </LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            android:text="You can also change the contact list later."></TextView>
         <View
             android:layout_width="80dp"
             android:layout_height="10dp"/>
