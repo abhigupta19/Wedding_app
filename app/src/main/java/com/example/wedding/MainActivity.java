@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -16,6 +17,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -27,12 +29,16 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity implements Bottomsheet.sendData , Bottomsheet2.sendData2 {
      FirebaseDatabase firebaseDatabase;
      DatabaseReference databaseReference;
      ArrayList<String> photos=new ArrayList<>();
+    static String projectId;
     RecyclerView recyclerView;
+   static int random;
+
 
     public static final String MY_PREFERENCE_KEY = "my_preference_key";
     @Override
@@ -40,7 +46,16 @@ public class MainActivity extends AppCompatActivity implements Bottomsheet.sendD
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         firebaseDatabase=FirebaseDatabase.getInstance();
-        databaseReference=firebaseDatabase.getReference(FirebaseAuth.getInstance().getCurrentUser().getUid());
+        TextView home=findViewById(R.id.home);
+        TextView profile=findViewById(R.id.profile);
+        home.setClickable(true);
+        profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                    startActivity(new Intent(MainActivity.this,Profile.class));
+            }
+        });
+
         final BottomAppBar bottomAppBar=findViewById(R.id.bottombar);
         recyclerView=findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -78,7 +93,14 @@ public class MainActivity extends AppCompatActivity implements Bottomsheet.sendD
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                    Bottomsheet bottomsheet=new Bottomsheet();
+                random = new Random().nextInt((900000 - 1000) + 1) + 1000;
+                databaseReference=firebaseDatabase.getReference(FirebaseAuth.getInstance().getCurrentUser().getUid()).child(String.valueOf(random));
+
+                SharedPreferences.Editor editor= (SharedPreferences.Editor) getSharedPreferences(MY_PREFERENCE_KEY,MODE_PRIVATE).edit();
+                editor.putString("random", String.valueOf(random));
+                editor.commit();
+
+                Bottomsheet bottomsheet=new Bottomsheet();
                     bottomsheet.show(getSupportFragmentManager(),"botoomsheet");
 
             }

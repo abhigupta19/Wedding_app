@@ -49,6 +49,8 @@
             android:paddingLeft="20dp"
             android:orientation="vertical"
             android:text="HOME"
+            android:id="@+id/home"
+            android:clickable="true"
 
             android:textColor="#FFFFFF">
 
@@ -61,11 +63,12 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="?android:attr/selectableItemBackground"
-
+            android:clickable="true"
             android:gravity="right|center"
             android:orientation="vertical"
             android:paddingRight="20dp"
             android:text="PROFILE"
+            android:id="@+id/profile"
             android:textColor="#FFFFFF">
 
         </TextView>
