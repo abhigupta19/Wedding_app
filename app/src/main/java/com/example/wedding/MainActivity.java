@@ -116,19 +116,23 @@ public class MainActivity extends AppCompatActivity implements Bottomsheet.sendD
         editor.putString("email",email);
         editor.putString("number",number);
         editor.commit();
-        databaseReference.child("profile").child("name").setValue(name);
-        databaseReference.child("profile").child("email").setValue(email);
-        databaseReference.child("profile").child("number").setValue(number);
-    }
+     }
 
     @Override
     public void sendInfo2(String Date, String type, String remarks) {
         if(!Date.isEmpty())
         databaseReference.child("profile").child("Date").setValue(Date);
         if(!type.isEmpty())
-            databaseReference.child("profile").child("email").setValue(type);
+            databaseReference.child("profile").child("type").setValue(type);
         if(!remarks.isEmpty())
             databaseReference.child("profile").child("remarks").setValue(remarks);
+        SharedPreferences sharedPreferences=getSharedPreferences(MY_PREFERENCE_KEY,MODE_PRIVATE);
+        String name=sharedPreferences.getString("name","");
+        String email=sharedPreferences.getString("email","");
+        String number=sharedPreferences.getString("number","");
+        databaseReference.child("profile").child("name").setValue(name);
+        databaseReference.child("profile").child("email").setValue(email);
+        databaseReference.child("profile").child("number").setValue(number);
 
     }
 }

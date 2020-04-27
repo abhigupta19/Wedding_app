@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="140dp"
+    android:elevation="20dp"
+    app:cardCornerRadius="10dp">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="20dp"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/primary_dark"
+            android:id="@+id/projectId"
+
+            android:text="Projectid"
+            android:textSize="20dp"></TextView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="name"
+            android:id="@+id/name"
+            android:layout_below="@id/projectId"
+            android:layout_marginTop="20dp"
+            ></TextView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Date of Event"
+            android:id="@+id/Date"
+            android:layout_alignParentRight="true"
+
+            android:layout_marginTop="10dp"
+            ></TextView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Type"
+            android:id="@+id/type"
+            android:layout_alignParentRight="true"
+            android:layout_alignBaseline="@id/name"
+            android:layout_marginTop="10dp"
+            ></TextView>
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>
