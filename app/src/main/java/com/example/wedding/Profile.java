@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -20,7 +21,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class Profile extends AppCompatActivity {
+public class Profile extends AppCompatActivity implements project_touch{
      ArrayList<String> name=new ArrayList<>();
     ArrayList<String> email=new ArrayList<>();
     ArrayList<String> phone=new ArrayList<>();
@@ -76,5 +77,17 @@ public class Profile extends AppCompatActivity {
         });
 
        // ProfileAdapter profileAdapter=new ProfileAdapter(this,)
+    }
+
+    @Override
+    public void touch(View View, int postion) {
+        Intent intent=new Intent(Profile.this,Full_profile.class);
+        intent.putExtra("name",name.get(postion));
+        intent.putExtra("email",email.get(postion));
+        intent.putExtra("projet_id",projectId.get(postion));
+        intent.putExtra("type_of",typeOf.get(postion));
+        intent.putExtra("date",date.get(postion));
+        intent.putExtra("phone",phone.get(postion));
+        startActivity(intent);
     }
 }
