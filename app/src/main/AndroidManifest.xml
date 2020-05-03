@@ -15,6 +15,8 @@
         <activity android:name=".Listcontact" />
         <activity android:name=".Extra_register" />
         <activity android:name=".MainActivity" />
+        <activity android:name=".deleteContact"></activity>
+        <activity android:name=".ListprofileContact"></activity>
         <activity android:name=".Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

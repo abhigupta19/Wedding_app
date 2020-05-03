@@ -22,7 +22,8 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ViewHold
     ArrayList<String> Id;
     ArrayList<String> typeOf;
     ArrayList<String> date;
-     Context context;
+    Context context;
+    public  project_touch project_touch;
 
     public ProfileAdapter(Context context, ArrayList<String> name, ArrayList<String> email, ArrayList<String> phone, ArrayList<String> projectId, ArrayList<String> typeOf, ArrayList<String> date) {
         this.name = name;
@@ -33,23 +34,35 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ViewHold
         this.date = date;
         this.context = context;
     }
+    public void setOnCardClickListener(project_touch clickListener) {
+        this.project_touch = clickListener;
+    }
 
     @NonNull
     @Override
     public ProfileAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view= LayoutInflater.from(context).inflate(R.layout.project,parent,false);
+        View view = LayoutInflater.from(context).inflate(R.layout.project, parent, false);
         return new ViewHolder(view);
     }
+
     @Override
-    public void onBindViewHolder(@NonNull ProfileAdapter.ViewHolder holder, int position) {
-        holder.name.setText("Name-> "+name.get(position));
-        holder.projectid.setText("ProjectId-> "+Id.get(position));
-        holder.Date.setText("Date-> "+date.get(position));
-        holder.typeOf.setText("Type-> "+typeOf.get(position));
+    public void onBindViewHolder(@NonNull final ProfileAdapter.ViewHolder holder, final int position) {
+        holder.name.setText("Name-> " + name.get(position));
+        holder.projectid.setText("ProjectId-> " + Id.get(position));
+        holder.Date.setText("Date-> " + date.get(position));
+        holder.typeOf.setText("Type-> " + typeOf.get(position));
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                project_touch.touch( position);
+            }
+        });
 
     }
 
-       @Override
+
+
+    @Override
     public int getItemCount() {
         return Id.size();
     }
@@ -61,13 +74,12 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ViewHold
         TextView Date;
         TextView typeOf;
 
-        public ViewHolder(@NonNull View itemView) {
+        public ViewHolder(@NonNull final View itemView) {
             super(itemView);
-             projectid = itemView.findViewById(R.id.projectId);
-            name= itemView.findViewById(R.id.name);
+            projectid = itemView.findViewById(R.id.projectId);
+            name = itemView.findViewById(R.id.name);
             Date = itemView.findViewById(R.id.Date);
-            typeOf= itemView.findViewById(R.id.type);
-
+            typeOf = itemView.findViewById(R.id.type);
         }
     }
 }

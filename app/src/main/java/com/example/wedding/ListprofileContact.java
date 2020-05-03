@@ -1,14 +1,11 @@
 package com.example.wedding;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.AlertDialog;
 import android.content.ContentResolver;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.util.Log;
@@ -25,10 +22,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
-public class Listcontact extends AppCompatActivity {
+import androidx.appcompat.app.AppCompatActivity;
+
+public class ListprofileContact extends AppCompatActivity {
     ListView listView ;
 
     static ArrayList<String> StoreContacts ;
@@ -50,9 +47,7 @@ public class Listcontact extends AppCompatActivity {
         setContentView(R.layout.activity_listcontact);
 
         listView = (ListView)findViewById(R.id.listview1);
-        SharedPreferences shared=  getSharedPreferences(MainActivity.MY_PREFERENCE_KEY,MODE_PRIVATE);
-        String random=shared.getString("random","");
-        d= FirebaseDatabase.getInstance().getReference(FirebaseAuth.getInstance().getCurrentUser().getUid()).child(random);
+        d= FirebaseDatabase.getInstance().getReference(FirebaseAuth.getInstance().getCurrentUser().getUid()).child(Full_profile.projectId);
 
 
         StoreContacts= GetContactsIntoArrayList();
@@ -60,24 +55,15 @@ public class Listcontact extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AlertDialog.Builder alert=new AlertDialog.Builder(Listcontact.this,R.style.AlertDialogTheme);
-                View view2=LayoutInflater.from(Listcontact.this).inflate(R.layout.alertbox,null,false);
-                alert.setView(view2);
 
-
-                alert.setPositiveButton("Done", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        startActivity(new Intent(Listcontact.this,MainActivity.class));
+                        startActivity(new Intent(ListprofileContact.this,Profile.class));
                         finish();
                     }
                 });
 
 
-                alert.show();
-            }
-        });
-        ContactAdapter contactAdapter=new ContactAdapter(Listcontact.this,StoreContacts,nameBy);
+
+        Add_adapter contactAdapter=new Add_adapter(ListprofileContact.this,StoreContacts,nameBy);
         listView.setAdapter(contactAdapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

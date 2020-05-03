@@ -62,6 +62,7 @@ public class Profile extends AppCompatActivity implements project_touch{
                         textView.setText("Your event list");
                     }
                 profileAdapter =new ProfileAdapter( Profile.this,name,email,phone,projectId,typeOf,date);
+                    profileAdapter.setOnCardClickListener(Profile.this);
                     recyclerView.setAdapter(profileAdapter);
                 profileAdapter.notifyDataSetChanged();
 
@@ -80,12 +81,12 @@ public class Profile extends AppCompatActivity implements project_touch{
     }
 
     @Override
-    public void touch(View View, int postion) {
+    public void touch( int postion) {
         Intent intent=new Intent(Profile.this,Full_profile.class);
         intent.putExtra("name",name.get(postion));
         intent.putExtra("email",email.get(postion));
-        intent.putExtra("projet_id",projectId.get(postion));
-        intent.putExtra("type_of",typeOf.get(postion));
+        intent.putExtra("project_id",projectId.get(postion));
+        intent.putExtra("type",typeOf.get(postion));
         intent.putExtra("date",date.get(postion));
         intent.putExtra("phone",phone.get(postion));
         startActivity(intent);

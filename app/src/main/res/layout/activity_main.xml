@@ -52,7 +52,8 @@
             android:id="@+id/home"
             android:clickable="true"
 
-            android:textColor="#FFFFFF">
+
+            android:textColor="#E2E2DE">
 
         </TextView>
 
@@ -67,7 +68,7 @@
             android:gravity="right|center"
             android:orientation="vertical"
             android:paddingRight="20dp"
-            android:text="PROFILE"
+            android:text="EVENT"
             android:id="@+id/profile"
             android:textColor="#FFFFFF">
 

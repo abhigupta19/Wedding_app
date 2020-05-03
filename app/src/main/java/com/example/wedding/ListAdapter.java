@@ -20,7 +20,6 @@ import androidx.recyclerview.widget.RecyclerView;
 public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
     Context context;
     ArrayList<String> photos;
-    project_touch project_touch;
 
 
 
@@ -49,22 +48,19 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
 
 
 
+
+
     @Override
     public int getItemCount() {
         return photos.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder  {
+    public static class ViewHolder extends RecyclerView.ViewHolder  {
         ImageView imageView;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
               imageView=(ImageView)itemView.findViewById(R.id.photos);
-              itemView.setOnClickListener(new View.OnClickListener() {
-                  @Override
-                  public void onClick(View view) {
-                      project_touch.touch(view,getPosition());
-                  }
-              });
+
         }
 
 
