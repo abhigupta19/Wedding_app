@@ -53,9 +53,9 @@ public class Login extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         sp = getSharedPreferences("login",MODE_PRIVATE);
         if(sp.getBoolean("logged",false)){
-            Intent intent = new Intent(Login.this, MainActivity.class);
-            String s=sp.getString("mobile","00000000");
-            intent.putExtra("phone",s);
+            Intent intent = new Intent(Login.this, Splash.class);
+            //String s=sp.getString("mobile","00000000");
+           // intent.putExtra("phone",s);
             startActivity(intent);
             finish();
         }
